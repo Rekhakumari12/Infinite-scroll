@@ -3,10 +3,8 @@ let pageCount;
 var input = document.getElementById("input_query");
 input.addEventListener("keyup", handleclick);
 function handleclick(e) {
-
-  // console.log(e.cancelable);
   if (e.keyCode === 13) {
-    e.preventDefault();
+     imageElements = "";
     pageCount = 1;
     document.getElementById("search_button").click();
   }
@@ -23,14 +21,13 @@ function handleclick(e) {
 
 let imageElements = '';
 const generateImages = () => {
-  let search_query = input.value;
-  let query = search_query;
-  search_query = '';
+  let query = input.value;
   if (query !== '') {
     fetchGetReq(query);
   }
 }
 const fetchGetReq = (query) => {
+  console.log(pageCount)
   let url = `https://api.unsplash.com/search/photos?page=${pageCount}&query=${query}&client_id=OsRP6Z7UVgxNrf13I-9rP7AsYLupKuHmWrLXzK1OQZ0`;
   fetch(url)
     .then(resp => resp.json())
@@ -55,13 +52,8 @@ const loadMorePage = () => {
 window.addEventListener("scroll", () => {
   console.log("im at scrolling");
   const { scrollHeight, clientHeight, scrollTop } = document.documentElement;
-  if (clientHeight + scrollTop >= scrollHeight) {
+  if (clientHeight + scrollTop+1 >= scrollHeight) {
     console.log("im at bottom");
     loadMorePage();
   }
-  // if (scrollTop >= scrollHeight/2) {
-  //   console.log("im at bottom");
-  //   loadMorePage();
-  // }
 })
-// fetchGetReq();
