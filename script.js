@@ -10,7 +10,7 @@ function handleclick(e) {
   }
 }
 
-//if want to use with <form>
+//if want to use with <form> tag
 // function searchKeyPress(e) {
 //   if (e.keyCode === 13) {
 //     document.getElementById("search_button").click();
